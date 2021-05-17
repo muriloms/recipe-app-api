@@ -20,11 +20,11 @@ class PublicUserApiTests(TestCase):
         self.client = APIClient()
 
     def test_create_valid_user_success(self):
-        """Test creating using with a valid payload is successul"""
+        """Test creating user with valid payload is successful"""
         payload = {
-            'email': 'test@test.com',
-            'passrword': 'testpass',
-            'name': 'name',
+            'email': 'test@gmail.com',
+            'password': '12345',
+            'name': 'test name'
         }
         res = self.client.post(CREATE_USER_URL, payload)
 
@@ -35,7 +35,7 @@ class PublicUserApiTests(TestCase):
 
     def test_user_exists(self):
         """Test creating a user that already exists fails"""
-        payload = {'email':'test@test.com','password':'testpass'}
+        payload = {'email':'test@test.com','password':'12345'}
         create_user(**payload)
         res = self.client.post(CREATE_USER_URL, payload)
 
